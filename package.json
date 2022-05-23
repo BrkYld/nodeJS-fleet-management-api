@@ -1,0 +1,50 @@
+{
+    "name": "fleet-management-api",
+    "version": "1.0.0",
+    "description": "Fleet Management API",
+    "main": "src/index.js",
+    "author": "Burak Yıldırım <burak_yildirim_official@hotmail.com>",
+    "type": "module",
+    "scripts": {
+        "dev": "cross-env APP_ENV=dev nodemon --inspect=0.0.0.0:9229 src/index.js",
+        "prod": "cross-env APP_ENV=prod nodemon src/index.js",
+        "test:all": "cross-env APP_ENV=test mocha --timeout 120000 tests/integration tests/unit/* tests/e2e",
+        "test:e2e": "cross-env APP_ENV=test mocha --timeout 120000 tests/e2e",
+        "test:unit": "cross-env APP_ENV=test c8 --check-coverage --lines 70 --functions 70 --branches 70 --statements 70 mocha --timeout 120000 tests/unit/*",
+        "test:integration": "cross-env APP_ENV=test c8 --check-coverage --lines 70 --functions 70 --branches 70 --statements 70 mocha --timeout 120000 tests/integration",
+        "docker:dev": "docker-compose -f docker-compose-dev.yml up",
+        "docker:prod": "docker-compose -f docker-compose-prod.yml up -d"
+    },
+    "dependencies": {
+        "@meanie/mongoose-to-json": "^2.6.0",
+        "assert": "^2.0.0",
+        "c8": "^7.11.0",
+        "cors": "^2.8.5",
+        "cross-env": "^7.0.0",
+        "dotenv": "^10.0.0",
+        "express": "^4.17.1",
+        "express-validation": "^3.0.8",
+        "http-status": "^1.5.0",
+        "joi": "^17.6.0",
+        "mocha": "^9.2.2",
+        "mongoose": "^6.2.9",
+        "morgan": "^1.10.0",
+        "nyc": "^15.1.0",
+        "winston": "^3.6.0"
+    },
+    "devDependencies": {
+        "coveralls": "^3.0.7",
+        "eslint": "^7.0.0",
+        "eslint-config-airbnb-base": "^14.0.0",
+        "eslint-config-prettier": "^8.1.0",
+        "eslint-plugin-import": "^2.18.2",
+        "eslint-plugin-jest": "^24.0.1",
+        "eslint-plugin-prettier": "^3.1.1",
+        "eslint-plugin-security": "^1.4.0",
+        "mockgoose": "^8.0.4",
+        "node-mocks-http": "^1.8.0",
+        "nodemon": "^2.0.0",
+        "prettier": "^2.0.5",
+        "supertest": "^6.0.1"
+    }
+}

@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  fleet-management-api-dev:
+    build: .
+    image: fleet-management-api
+    volumes:
+      - .:/usr/src/fleet-management-api
+    networks:
+      - node-network-dev
+    container_name: node-app-dev
+    depends_on:
+      - mongodb
+    command: yarn dev -L
+    ports:
+      - "3000:3000"
+      - "9229:9229"
+  
+  mongodb:
+    image: mongo:4.2.1-bionic
+    ports:
+      - '27017:27017'
+    volumes:
+      - dbdata:/data/db
+    networks:
+      - node-network-dev
+
+volumes:
+  dbdata:
+
+networks:
+  node-network-dev:
+    driver: bridge

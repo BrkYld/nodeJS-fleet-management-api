@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  fleet-management-api:
+    build: .
+    image: fleet-management-api
+    volumes:
+      - .:/usr/src/fleet-management-api
+    networks:
+      - node-network
+    container_name: node-app
+    command: yarn prod
+    ports:
+      - "3000:3000"
+
+networks:
+  node-network:
+    driver: bridge
